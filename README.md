@@ -1,6 +1,6 @@
 # Nday-ToyStore
 
-The official exploit and PoC toolkit for my security research blog series: **[From Bug To Exploit](https://iss4cf0ng.github.io/FromBugToExploit/)**.
+The central exploit and PoC toolkit for my security research blog series: **[From Bug To Exploit](https://iss4cf0ng.github.io/FromBugToExploit/)**.
 
 Every script and exploit in this repository is **independently researched, written, and tested** by me during my journey into vulnerability analysis, binary exploitation, and software security.
 
