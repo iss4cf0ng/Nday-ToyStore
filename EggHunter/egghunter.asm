@@ -2,6 +2,8 @@
 ; nasm egghunter.asm -o egghunter.bin
 ; xxd -i egghunter.bin
 
+[BITS 32]
+
 loop_inc_page:
     or dx, 0x0fff
 
