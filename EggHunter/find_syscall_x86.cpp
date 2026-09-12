@@ -1,4 +1,4 @@
-// find_syscall.cpp
+// find_syscall_x86.cpp
 
 #include <iostream>
 #include <windows.h>
@@ -20,12 +20,12 @@ int main(int argc, char** argv)
     }
 	
 	HMODULE hNtDll = GetModuleHandleA("ntdll.dll");
-	if (INVALID_HANDLE_VALUE == hNtDll)
+	if (INVALID_HANDLE_VALUE == hNtDll || NULL == hNtDll)
     {
 		hNtDll = LoadLibrary("ntdll.dll");
 	}
 	
-	if (INVALID_HANDLE_VALUE == hNtDll)
+	if (INVALID_HANDLE_VALUE == hNtDll || NULL == hNtDll)
     {
 		std::cout << "[-] Cannot load ntdll.dll" << std::endl;
 		return 1;
