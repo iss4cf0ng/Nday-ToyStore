@@ -5,7 +5,7 @@
 #include <windows.h>
 
 char rock[0xE000] = "...some data";
-char rahab[0x2000] = "\x90\x58\x58\xc3"; // nop # pop # pop # ret
+char here[0x2000] = "\x90\x58\x58\xc3"; // nop # pop # pop # ret
 
 void foo(void *src_buffer, size_t const len)
 {
