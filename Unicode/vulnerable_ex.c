@@ -1,11 +1,10 @@
-// vulnerable.c
+// vulnerable_ex.c
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <windows.h>
 
-char rock[0xE000] = "...some data";
-char here[0x2000] = "\x90\x58\x58\xc3"; // nop # pop # pop # ret
+char* const here = (char*)0x00400060;
 
 void foo(void *src_buffer, size_t const len)
 {
@@ -17,6 +16,13 @@ void foo(void *src_buffer, size_t const len)
 
 int main(int argc, char **argv)
 {
+    DWORD oldProtect;
+    VirtualProtect((LPVOID)0x00400000, 0x1000, PAGE_EXECUTE_READWRITE, &oldProtect);
+
+    memcpy(here, "\x90\x58\x58\xc3", 4);
+
+    printf("\"here\" address is at: 0x%p\n", (void*)here); 
+
     size_t const STR_LENGTH = 4096;
     wchar_t *unicode_buffer = (wchar_t *)malloc(STR_LENGTH);
     char ascii_buffer[STR_LENGTH];
@@ -42,6 +48,5 @@ int main(int argc, char **argv)
     printf("Ends...\n");
 
     free(unicode_buffer);
-
     return 0;
 }
