@@ -299,7 +299,7 @@ def main():
     port = int(args.port)   # target port
 
     if args.file:
-        # # use hosts from the input file?
+        # use hosts from the input file
 
         if not os.path.exists(args.file):
             print(f'{Fore.RED + Style.BRIGHT}[-]{Style.RESET_ALL} Cannot find file: {args.file}')
@@ -309,9 +309,12 @@ def main():
         
         print(f'{Fore.BLUE + Style.BRIGHT}[*]{Style.RESET_ALL} Loaded file: {args.file}, hosts = {len(ip_objs)}')
     elif args.ip:
-        #
+        # use a specified IP address
+
         ip_objs.append(args.ip)
     else:
+        # none of above
+        
         parser.print_help()
         return
 
