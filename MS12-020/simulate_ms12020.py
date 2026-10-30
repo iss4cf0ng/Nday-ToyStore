@@ -116,7 +116,7 @@ class MockVulRDPServer:
             raise RuntimeError(f'Cannot find channel with id: {target_id}')
 
         if removed_obj.is_free:
-            raise RuntimeError(f'Double Free. Channel_id={target_id}')
+            raise RuntimeError(f'Double Free / User-After-Free. Channel_id={target_id}')
         else:
             print(f'[+] Successfully released channel_id={target_id}')
             removed_obj.is_free = True
