@@ -1,5 +1,7 @@
 # MS08067
 
+Article: [MS06-040 and MS08-067](https://iss4cf0ng.github.io/2026/09/17/2026-9-17-MS08-67/)
+
 Vulnerable function:
 
 ```c
@@ -31,8 +33,6 @@ if (wVar1 == L'.') {
     goto LAB_5b86a411;
 }
 ```
-
-Article: [MS06-040 and MS08-067](https://iss4cf0ng.github.io/2026/09/17/2026-9-17-MS08-67/)
 
 # Screenshots
 
