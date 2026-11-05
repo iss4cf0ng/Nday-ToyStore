@@ -1,5 +1,6 @@
 # simulate_ms12020.py
 # Simulation program
+# author: iss4cf0ng/ISSAC
 
 import time
 import argparse

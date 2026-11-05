@@ -1,4 +1,5 @@
 # stub.py
+# author: iss4cf0ng/ISSAC
 
 class StubBuilder:
     def __init__(self, shellcode: bytes, badchars: bytes):
