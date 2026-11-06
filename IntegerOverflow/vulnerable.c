@@ -23,12 +23,41 @@ void process_packet(char *packet_data, int packet_len)
     printf("[+] OK\n");
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
+    if (argc < 2)
+    {
+        printf("Usage: %s <payload_file>\n", argv[0]);
+        return 1;
+    }
+
+    FILE *f = fopen(argv[1], "rb");
+    if (!f)
+    {
+        perror("[-] Failed to open file\n");
+        return 1;
+    }
+
+    fseek(f, 0, SEEK_END);
+    long file_size = ftell(f);
+    rewind(f);
+
+    char *malicious_data = (char *)malloc(file_size);
+    if (!malicious_data)
+    {
+        fclose(f);
+        printf("[-] Memory allocation failed\n");
+        return 1;
+    }
+
+    size_t read_bytes = fread(malicious_data, 1, file_size, f);
+    fclose(f);
+
+    printf("[*] Loaded %ld bytes from file.\n", read_bytes);
+
+    // integer overflow
     int malicious_len = -1; 
     
-    char *malicious_data = malloc(1024);
-    memset(malicious_data, 'A', 1024);
-
     process_packet(malicious_data, malicious_len);
 
     free(malicious_data);
