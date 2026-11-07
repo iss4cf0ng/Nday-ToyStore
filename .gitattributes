@@ -1,1 +1,2 @@
 ToolsForXP/symbols.7z filter=lfs diff=lfs merge=lfs -text
+Fuzzbunch/fuzzbunch.zip filter=lfs diff=lfs merge=lfs -text
